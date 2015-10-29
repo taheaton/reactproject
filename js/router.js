@@ -4,6 +4,8 @@ import ReactDom from 'react-dom';
 
 import HomeComponent from './views/home';
 import FormComponent from './views/formplay';
+import ContactUsComponent from './views/contactus';
+import AboutComponent from './views/about';
 import SpinnerComponent from './views/spinner';
 
 export default Backbone.Router.extend({
@@ -41,16 +43,45 @@ export default Backbone.Router.extend({
   showHome() {
     this.render(
       <HomeComponent 
-      onFormClick={() => this.goto('form')}
-      onHomeClick={() => this.goto('home')}/>
+      onHomeClick={() => this.goto('')}
+      onContactUsClick={() => this.goto('contactUs')}
+      onAboutClick={() => this.goto('about')}
+      onFormClick={() => this.goto('form')}/>
+
+      );
+  },
+
+  showContactUs() {
+    this.render(
+      <ContactUsComponent 
+      onHomeClick={() => this.goto('')}
+      onContactUsClick={() => this.goto('contactUs')}
+      onAboutClick={() => this.goto('about')}
+      onFormClick={() => this.goto('form')}/>
+
+      );
+  },
+
+  showAbout() {
+    this.render(
+      <AboutComponent 
+      onHomeClick={() => this.goto('')}
+      onContactUsClick={() => this.goto('contactUs')}
+      onAboutClick={() => this.goto('about')}
+      onFormClick={() => this.goto('form')}/>
+
       );
   },
 
   showForm() {
     this.render(
       <FormComponent
-        onCancelClick={() => this.goto('')}
-        onSubmit={(msg) => this.saveForm(msg)}/>
+      onHomeClick={() => this.goto('')}
+      onContactUsClick={() => this.goto('contactUs')}
+      onAboutClick={() => this.goto('about')}
+      onFormClick={() => this.goto('form')}
+      onCancelClick={() => this.goto('')}
+      onSubmit={(msg) => this.saveForm(msg)}/>
     );
   },
 
