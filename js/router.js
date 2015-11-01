@@ -1,24 +1,29 @@
 import Backbone from 'backbone';
 import React from 'react';
 import ReactDom from 'react-dom';
+import {PictureCollection, PictureModel} from './resources';
 
-import HomeComponent from './views/home';
-import FormComponent from './views/formplay';
-import ContactUsComponent from './views/contactus';
-import AboutComponent from './views/about';
-import SpinnerComponent from './views/spinner';
+import PictureComponent from './views/picture';
+import DetailsComponent from './views/detail';
+import AddComponent from './views/add';
+import EditComponent from './views/edit';
 
 export default Backbone.Router.extend({
-
   routes: {
-    ""      : "showHome",
-    "about" : "showAbout",
-    "form"  : "showForm",
-    "contactUs" : "showContactUs",
+
+    // Routes for Router
+    ""             : "redirectToPictures",
+    "picture"      : "showPictures",
+    "detail/:id"   : "showDetails",
+    "add"          : "showAddPictures",
+    "edit/:id"     : "showEditPictures"
   },
 
   initialize(appElement) {
     this.el = appElement;
+    this.collection = new PictureCollection();
+    this.model = new PictureModel();
+
   },
 
   goto(route) {
@@ -31,64 +36,105 @@ export default Backbone.Router.extend({
     ReactDom.render(component, this.el);
   },
 
-  start() {
-    Backbone.history.start();
-    return this;
+  showPictures() {
+    this.collection.fetch().then(() => {
+      this.render(
+        <PictureComponent          
+          onDetailsClick={(id) => this.goto('detail/' + id)}
+          onAddClick={() => this.goto('add')}
+          pictures={() => this.collection.toJSON()}
+        />
+      );
+    });
+  },
+      
+
+  showDetails(id) {
+    let image = this.collection.get(id);
+
+    if (image) {
+      this.render(
+        <DetailsComponent
+          onBackClick={() => this.goto('picture')}
+          onEditClick={(id) => this.goto('edit/' + id)}
+          details={image.toJSON()}
+        />
+      );
+      
+    } else {
+      image = this.collection.add({objectId: id});
+      image.fetch().then(() => {
+        this.render(
+          <DetailsComponent
+            onBackClick={() => this.goto('picture')}
+            onEditClick={(id) => this.goto('edit/' + id)}
+            details={image.toJSON()}
+          />
+        );
+      });
+    }
+
+  },
+
+  showAddPictures() {  
+    this.render(
+      <AddComponent
+        onCancelClick={() => this.goto('picture')}
+        onAddClick={(title, url, about) => {
+          let newAdd = new PictureModel ({
+            Title: title,
+            Url: url,
+            About: about
+          });
+
+          newAdd.save().then(() => {
+            this.goto('picture');
+          });
+        }}
+      />
+    );
+  },
+
+  redirectToPictures() {
+    this.navigate('picture', {
+      replace: true,
+      trigger: true
+    });
+
+
   },
 
   showSpinner() {
     this.render(<SpinnerComponent/>);
   },
 
-  showHome() {
+  showEditPictures(id) {
+    let pic = this.collection.get(id);
+
     this.render(
-      <HomeComponent 
-      onHomeClick={() => this.goto('')}
-      onContactUsClick={() => this.goto('contactUs')}
-      onAboutClick={() => this.goto('about')}
-      onFormClick={() => this.goto('form')}/>
-
-      );
-  },
-
-  showContactUs() {
-    this.render(
-      <ContactUsComponent 
-      onHomeClick={() => this.goto('')}
-      onContactUsClick={() => this.goto('contactUs')}
-      onAboutClick={() => this.goto('about')}
-      onFormClick={() => this.goto('form')}/>
-
-      );
-  },
-
-  showAbout() {
-    this.render(
-      <AboutComponent 
-      onHomeClick={() => this.goto('')}
-      onContactUsClick={() => this.goto('contactUs')}
-      onAboutClick={() => this.goto('about')}
-      onFormClick={() => this.goto('form')}/>
-
-      );
-  },
-
-  showForm() {
-    this.render(
-      <FormComponent
-      onHomeClick={() => this.goto('')}
-      onContactUsClick={() => this.goto('contactUs')}
-      onAboutClick={() => this.goto('about')}
-      onFormClick={() => this.goto('form')}
-      onCancelClick={() => this.goto('')}
-      onSubmit={(msg) => this.saveForm(msg)}/>
+      <EditComponent
+        record={pic.toJSON()}
+        onCancelClick={() => this.goto('detail/' + id)}
+        onSubmit={(msg, url, about) => this.saveForm(msg, url, about, id)}
+      />
     );
+      
   },
 
-  saveForm(message) {
-    this.showSpinner();
-    alert(`Simulating saving: ${message}`);
-    this.goto('');
+  saveForm(msg, url, about, id) {
+    this.collection.get(id).save({
+      Title: msg,
+      Url: url,
+      About: about
+    }).then(() => {
+      this.goto('picture');
+    });
+  },
+
+  start() {
+    Backbone.history.start();
+    return this;
   }
+
 
 });

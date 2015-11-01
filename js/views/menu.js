@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export default React.createClass({
 
   formclickHandler() {
@@ -11,20 +12,22 @@ export default React.createClass({
   aboutclickHandler() {
     this.props.onAboutClick();
   },
-  contactUsclickHandler() {
-    this.props.onContactUsClick();
+  tripclickHandler() {
+    this.props.onTripClick();
   },
+
+  
 
   render() {
     return (
       <div className="header">
-        <h1>Hey</h1>
+        <h1>The real deal</h1>
         <ul className="menu">
           <li className="home"onClick={this.homeclickHandler}>Home</li>
           <li className="about"onClick={this.aboutclickHandler}>About</li>
           <li className="form"onClick={this.formclickHandler}>Add New</li>
-          <li className="contactUs"onClick={this.contactUsclickHandler}>Contact Us</li>
-        </ul><p>Nah you cant</p> 
+          <li className="trip"onClick={this.tripclickHandler}>Trip</li>
+        </ul>
       </div>
 
       
