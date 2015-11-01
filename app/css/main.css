@@ -2068,8 +2068,8 @@ body {
   border: 4px solid #333;
   float: left;
   display: inline-block;
-  height: 48%;
-  width: 48%;
+  max-height: 480px;
+  max-width: 480px;
   float: left;
   display: block;
   margin-right: 2.35765%;
@@ -2083,5 +2083,21 @@ body {
 
 .pic-container li:hover {
   opacity: .9; }
+
+.detail {
+  margin: 50px; }
+
+.container {
+  display: inline-block;
+  margin: 20px; }
+
+.container img {
+  max-width: 500px;
+  max-height: 500px;
+  float: left; }
+
+.container p {
+  margin-left: 515px;
+  margin-right: 100px; }
 
 /*# sourceMappingURL=main.css.map */

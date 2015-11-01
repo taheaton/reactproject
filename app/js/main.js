@@ -376,7 +376,73 @@ module.exports = exports["default"];
 },{"react":171}],9:[function(require,module,exports){
 "use strict";
 
-},{}],10:[function(require,module,exports){
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+exports["default"] = _react2["default"].createClass({
+  displayName: "detail",
+
+  backClickHandler: function backClickHandler() {
+    this.props.onBackClick();
+  },
+
+  editClickHandler: function editClickHandler(id) {
+    this.props.onEditClick(id);
+  },
+
+  render: function render() {
+    var _this = this;
+
+    return _react2["default"].createElement(
+      "div",
+      null,
+      _react2["default"].createElement(
+        "div",
+        { className: "container" },
+        _react2["default"].createElement(
+          "h2",
+          null,
+          "Details"
+        ),
+        _react2["default"].createElement("img", { src: this.props.details.Url }),
+        _react2["default"].createElement(
+          "p",
+          null,
+          this.props.details.location
+        ),
+        _react2["default"].createElement("hr", null),
+        _react2["default"].createElement(
+          "p",
+          null,
+          this.props.details.sum
+        )
+      ),
+      _react2["default"].createElement(
+        "button",
+        { key: this.props.details.objectId, className: "edit-btn", onClick: function () {
+            return _this.editClickHandler(data.objectId);
+          } },
+        "Edit"
+      ),
+      _react2["default"].createElement(
+        "button",
+        { onClick: this.backClickHandler },
+        "Back"
+      )
+    );
+  }
+
+});
+module.exports = exports["default"];
+
+},{"react":171}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
