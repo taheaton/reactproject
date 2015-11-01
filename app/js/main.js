@@ -458,7 +458,7 @@ exports['default'] = _react2['default'].createClass({
         _react2['default'].createElement(
           'li',
           null,
-          _react2['default'].createElement('img', { src: data.Url, className: 'main-pictures' })
+          _react2['default'].createElement('img', { src: data.Url, title: data.location, className: 'main-pictures' })
         )
       )
     );

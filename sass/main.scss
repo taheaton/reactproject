@@ -3,46 +3,31 @@
 @import "font-awesome";
 
 body {
-  @include outer-container;
   font-family: 'Arvo', serif;
   background-color: #dedede;
 }
-
-h1{
+.header{
   font-family: 'Arvo', serif;
   text-align: center;
   border-radius: 180px;
   border-style: solid;
   border-width: 5px;
 }
-img {
-  @include span-columns(3);
-  @include omega(4n);
-  margin: 0px;
-  border-radius: 30px;
-  display: inline;
-
-  }
-  li{
-  
-  
-
-}
-ul {
+.menu { 
+  @include span-columns(4); 
   text-align: center;
-  padding: 5px;
-  text-decoration: none;
-  margin-bottom: 35px;
+  padding: 0px;
 }
-
-
-/* mouse over link */
-a{
+.menu ul {
+  padding: 0px;
+  list-style: none;
+  margin: 0px;
+}
+.menu a{
   text-decoration: none;
   padding: 5px;
-
-  }
-  a:hover {
+}
+.menu a:hover {
     color: #fafafa;
     border-radius: 5px;
     border-style: solid;
@@ -50,4 +35,40 @@ a{
     text-decoration: none;
     background-color: #d6d6d6;
   }
+
+  .menu li {
+  
+}
+
+
+
+
+.pic-container img{ 
+  position:relative;
+    margin:4px 4px 4px 4px;
+    border:4px solid #333;
+    float: left;
+    display:inline-block;
+    height: 48%;
+    width: 48%;
+    @include span-columns(3); 
+  
+
+}
+.pic-container li {
+  list-style: none;
+  cursor: pointer;
+}
+.pic-container li:hover {
+  opacity: .9;
+}
+
+
+
+
+ 
+
+
+
+
 

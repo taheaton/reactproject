@@ -15,7 +15,7 @@ export default React.createClass({
     return (
       <div key={data.objectId} className="pic-container" onClick={() => this.detailsClickHandler(data.objectId)}>
         <ul>
-          <li><img src={data.Url} className="main-pictures"/></li>
+          <li><img src={data.Url} title={data.location} className="main-pictures"/></li>
         </ul>
       </div>
     ); 
