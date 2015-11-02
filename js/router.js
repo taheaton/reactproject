@@ -42,14 +42,15 @@ export default Backbone.Router.extend({
         <PictureComponent          
           onDetailsClick={(id) => this.goto('detail/' + id)}
           onAddClick={() => this.goto('add')}
-          pictures={() => this.collection.toJSON()}
-        />
+          pictures={() => this.collection.toJSON()}/>
+        
       );
     });
   },
       
 
   showDetails(id) {
+
     let image = this.collection.get(id);
 
     if (image) {
@@ -57,8 +58,9 @@ export default Backbone.Router.extend({
         <DetailsComponent
           onBackClick={() => this.goto('picture')}
           onEditClick={(id) => this.goto('edit/' + id)}
-          details={image.toJSON()}
-        />
+          details={image.toJSON()}/>
+          
+        
       );
       
     } else {
@@ -68,8 +70,7 @@ export default Backbone.Router.extend({
           <DetailsComponent
             onBackClick={() => this.goto('picture')}
             onEditClick={(id) => this.goto('edit/' + id)}
-            details={image.toJSON()}
-          />
+            details={image.toJSON()}/>
         );
       });
     }
@@ -90,8 +91,7 @@ export default Backbone.Router.extend({
           newAdd.save().then(() => {
             this.goto('picture');
           });
-        }}
-      />
+        }}/>
     );
   },
 
@@ -115,8 +115,7 @@ export default Backbone.Router.extend({
       <EditComponent
         record={pic.toJSON()}
         onCancelClick={() => this.goto('detail/' + id)}
-        onSubmit={(msg, url, about) => this.saveForm(msg, url, about, id)}
-      />
+        onSubmit={(msg, url, about) => this.saveForm(msg, url, about, id)}/>
     );
       
   },

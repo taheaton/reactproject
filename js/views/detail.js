@@ -12,19 +12,30 @@ export default React.createClass({
 
   render() {
     return (
-      <div>
-        <div className="container">
-          <h2>Details</h2> 
-          <img src={this.props.details.Url}/> 
-        
-          <p>{this.props.details.location}</p><hr/>
-          <p>{this.props.details.sum}</p>      
+      <div className="detail-container">
+        <div className="detail-header">
+          <h2>{this.props.details.location}</h2> 
         </div>
-        <button key={this.props.details.objectId} className="edit-btn" onClick={() => this.editClickHandler(data.objectId)}>
-          Edit
+
+        <div className="detail-img">
+          <img src={this.props.details.Url}/>  
+        </div>   
+
+        <div className="detail-about">
+          <h2>{this.props.details.location}</h2>
+          <p>{this.props.details.sum}</p>
+        </div>
+
+        <div className="detail-edit"> 
+          <button className="detail-edit-btn" key={this.props.details.objectId} onClick={() => this.editClickHandler(this.props.details.objectId)}>
+            Edit Picture
           </button>
-          <button onClick={this.backClickHandler}>Back</button>
-      </div>  
+        </div>
+
+        <div className="detail-back">
+          <button className="detail-back-btn" onClick={this.backClickHandler}>Go Back</button>
+        </div>
+      </div>
     );
   }
 

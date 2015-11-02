@@ -17,15 +17,16 @@ body {
   @include span-columns(4); 
   text-align: center;
   padding: 0px;
+  padding-right: 10px;
+  margin-bottom: 16px;
 }
 .menu ul {
   padding: 0px;
   list-style: none;
-  margin: 0px;
-}
+  }
 .menu a{
   text-decoration: none;
-  padding: 5px;
+  margin-right: 71px;
 }
 .menu a:hover {
     color: #fafafa;
@@ -35,14 +36,13 @@ body {
     text-decoration: none;
     background-color: #d6d6d6;
   }
-
-  .menu li {
-  
+.menu a:current {
+  color: purple;
+  font-size: 48px;
 }
-
-
-
-
+  .menu li {
+}
+ //pic  
 .pic-container img{ 
   position:relative;
     margin:4px 4px 4px 4px;
@@ -51,34 +51,59 @@ body {
     display:inline-block;
     max-height: 480px;
     max-width: 480px;
-    @include span-columns(3); 
-  
-
-}
+    @include span-columns(3);
+    font-size: 22pt; 
+    
+  }
 .pic-container li {
   list-style: none;
   cursor: pointer;
+  -webkit-filter: grayscale(100%);
+   -moz-filter: grayscale(100%);
+   -ms-filter: grayscale(100%);
+   filter: grayscale(100%);
+   filter: gray;
+
 }
 .pic-container li:hover {
-  opacity: .9;
-}
+  -webkit-filter: none;
+   -moz-filter: none;
+   -ms-filter: none;
+   filter: none;
+   }
+//detail
 .detail
 {
 margin: 50px;
 }
-.container {
+.detail-container {
   display: inline-block;
   margin: 20px;
 }
-.container img{
+.detail-container img{
   max-width: 500px;
   max-height: 500px;
   float: left;
 }
-.container p{
+.detail-container p{
   
   margin-left: 515px;
   margin-right: 100px;
+}
+//add
+.add-container{
+  max-width: 34em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.add-input-title{
+  width: 580px;
+}
+.add-input-url{
+  width: 580px;
+}
+.add-input-about{
+  width: 580px;
 }
 
 

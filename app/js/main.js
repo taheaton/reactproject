@@ -215,8 +215,7 @@ exports['default'] = _backbone2['default'].Router.extend({
         },
         pictures: function () {
           return _this.collection.toJSON();
-        }
-      }));
+        } }));
     });
   },
 
@@ -233,8 +232,7 @@ exports['default'] = _backbone2['default'].Router.extend({
         onEditClick: function (id) {
           return _this2.goto('edit/' + id);
         },
-        details: image.toJSON()
-      }));
+        details: image.toJSON() }));
     } else {
       image = this.collection.add({ objectId: id });
       image.fetch().then(function () {
@@ -245,8 +243,7 @@ exports['default'] = _backbone2['default'].Router.extend({
           onEditClick: function (id) {
             return _this2.goto('edit/' + id);
           },
-          details: image.toJSON()
-        }));
+          details: image.toJSON() }));
       });
     }
   },
@@ -268,8 +265,7 @@ exports['default'] = _backbone2['default'].Router.extend({
         newAdd.save().then(function () {
           _this3.goto('picture');
         });
-      }
-    }));
+      } }));
   },
 
   redirectToPictures: function redirectToPictures() {
@@ -295,8 +291,7 @@ exports['default'] = _backbone2['default'].Router.extend({
       },
       onSubmit: function (msg, url, about) {
         return _this4.saveForm(msg, url, about, id);
-      }
-    }));
+      } }));
   },
 
   saveForm: function saveForm(msg, url, about, id) {
@@ -335,37 +330,102 @@ var _react2 = _interopRequireDefault(_react);
 exports["default"] = _react2["default"].createClass({
   displayName: "add",
 
-  backClickHandler: function backClickHandler() {
-    this.props.onBackClick();
+  cancelClickHandler: function cancelClickHandler() {
+    this.props.onCancelClick();
   },
 
-  editClickHandler: function editClickHandler(id) {
-    this.props.onEditClick(id);
+  submitHandler: function submitHandler(event) {
+    event.preventDefault();
+    this.props.onAddClick(this.state.Title, this.state.Url, this.state.About);
+  },
+
+  updateTitle: function updateTitle(event) {
+    var newTitle = event.currentTarget.value;
+
+    this.setState({
+      Title: newTitle
+    });
+  },
+
+  updateUrl: function updateUrl(event) {
+    var newUrl = event.currentTarget.value;
+
+    this.setState({
+      Url: newUrl
+    });
+  },
+
+  updateAbout: function updateAbout(event) {
+    var newAbout = event.currentTarget.value;
+
+    this.setState({
+      About: newAbout
+    });
   },
 
   render: function render() {
-    var _this = this;
-
     return _react2["default"].createElement(
       "div",
-      null,
+      { className: "add-container" },
       _react2["default"].createElement(
-        "h2",
-        null,
-        "Details"
-      ),
-      _react2["default"].createElement("img", { src: this.props.details.Url }),
-      _react2["default"].createElement(
-        "button",
-        { key: this.props.details.objectId, className: "edit-btn", onClick: function () {
-            return _this.editClickHandler(data.objectId);
-          } },
-        "Edit"
+        "div",
+        { className: "add-header" },
+        _react2["default"].createElement(
+          "h2",
+          null,
+          "Add an image"
+        )
       ),
       _react2["default"].createElement(
-        "button",
-        { onClick: this.backClickHandler },
-        "Back"
+        "div",
+        { className: "add-form" },
+        _react2["default"].createElement(
+          "form",
+          { onSubmit: this.submitHandler },
+          _react2["default"].createElement(
+            "label",
+            { className: "add-label-url" },
+            "Url: ",
+            _react2["default"].createElement("input", { onChange: this.updateUrl, className: "add-input-url", placeholder: "Please provide the image url here  (i.e. 'www.mypicture.com')", type: "url" })
+          ),
+          _react2["default"].createElement("br", null),
+          _react2["default"].createElement("br", null),
+          _react2["default"].createElement(
+            "label",
+            { className: "add-label-title" },
+            "Location: ",
+            _react2["default"].createElement("input", { onChange: this.updateTitle, className: "add-input-title", placeholder: "Where was your picture taken?  (i.e. 'Paris, France')", type: "text" })
+          ),
+          _react2["default"].createElement("br", null),
+          _react2["default"].createElement("br", null),
+          _react2["default"].createElement(
+            "label",
+            { className: "add-label-about" },
+            "About: ",
+            _react2["default"].createElement("input", { onChange: this.updateAbout, className: "add-input-about", placeholder: "Please write a brief description about the picture and context", type: "text" })
+          ),
+          _react2["default"].createElement("br", null),
+          _react2["default"].createElement("br", null)
+        )
+      ),
+      _react2["default"].createElement(
+        "div",
+        { className: "add-submit" },
+        _react2["default"].createElement(
+          "button",
+          { className: "add-submit-btn", onClick: this.submitHandler },
+          "Submit"
+        )
+      ),
+      _react2["default"].createElement("br", null),
+      _react2["default"].createElement(
+        "div",
+        { className: "add-cancel" },
+        _react2["default"].createElement(
+          "button",
+          { className: "add-cancel-btn", onClick: this.cancelClickHandler },
+          "Cancel"
+        )
       )
     );
   }
@@ -402,22 +462,29 @@ exports["default"] = _react2["default"].createClass({
 
     return _react2["default"].createElement(
       "div",
-      null,
+      { className: "detail-container" },
       _react2["default"].createElement(
         "div",
-        { className: "container" },
+        { className: "detail-header" },
         _react2["default"].createElement(
           "h2",
           null,
-          "Details"
-        ),
-        _react2["default"].createElement("img", { src: this.props.details.Url }),
+          this.props.details.location
+        )
+      ),
+      _react2["default"].createElement(
+        "div",
+        { className: "detail-img" },
+        _react2["default"].createElement("img", { src: this.props.details.Url })
+      ),
+      _react2["default"].createElement(
+        "div",
+        { className: "detail-about" },
         _react2["default"].createElement(
-          "p",
+          "h2",
           null,
           this.props.details.location
         ),
-        _react2["default"].createElement("hr", null),
         _react2["default"].createElement(
           "p",
           null,
@@ -425,16 +492,24 @@ exports["default"] = _react2["default"].createClass({
         )
       ),
       _react2["default"].createElement(
-        "button",
-        { key: this.props.details.objectId, className: "edit-btn", onClick: function () {
-            return _this.editClickHandler(data.objectId);
-          } },
-        "Edit"
+        "div",
+        { className: "detail-edit" },
+        _react2["default"].createElement(
+          "button",
+          { className: "detail-edit-btn", key: this.props.details.objectId, onClick: function () {
+              return _this.editClickHandler(_this.props.details.objectId);
+            } },
+          "Edit Picture"
+        )
       ),
       _react2["default"].createElement(
-        "button",
-        { onClick: this.backClickHandler },
-        "Back"
+        "div",
+        { className: "detail-back" },
+        _react2["default"].createElement(
+          "button",
+          { className: "detail-back-btn", onClick: this.backClickHandler },
+          "Go Back"
+        )
       )
     );
   }
