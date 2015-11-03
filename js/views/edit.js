@@ -46,16 +46,17 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="edit-outer">
+      <div className="edit-container">
+        
         <div className="edit-header">
-          <h2>Edit</h2>
+          <h2>Edit This Image</h2>
         </div>
 
         <div className="edit-form">
           <form onSubmit={this.submitHandler}>
-            <label className="edit-label-location">Location: <input onChange={this.updatelocation} type="text" value={this.state.location} placeholder="Name your picture!"/></label>
-            <label className="edit-label-url">Url: <input onChange={this.updateUrl} type="url" value={this.state.Url} placeholder="example.com/picture.png"/></label>
-            <label className="edit-label-sum">About: <textarea onChange={this.updatesum} type="text" value={this.state.sum} placeholder="Tell us about this picture!"/></label>
+            <label className="edit-label-location">Location: <input onChange={this.updatelocation} type="text" value={this.state.location} className="edit-input-location" placeholder="Name your picture!"/></label><br/>
+            <label className="edit-label-url">Url: <input onChange={this.updateUrl} type="url" value={this.state.Url} className="edit-input-url"placeholder="Insert your new url here"/></label><br/>
+            <label className="edit-label-sum">About: <input onChange={this.updatesum} type="text" value={this.state.sum} className="edit-input-sum"placeholder="Tell us about this picture!"/></label><br/>
           </form>
         </div>
 

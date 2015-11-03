@@ -8,6 +8,7 @@ import DetailsComponent from './views/detail';
 import AddComponent from './views/add';
 import EditComponent from './views/edit';
 import SpinnerComponent from './views/spinner';
+import AboutComponent from './views/about';
 
 
 
@@ -20,7 +21,8 @@ export default Backbone.Router.extend({
     "picture"      : "showPictures",
     "detail/:id"   : "showDetails",
     "add"          : "showAddPictures",
-    "edit/:id"     : "showEditPictures"
+    "edit/:id"     : "showEditPictures",
+    "about"        : "showAbout",
   },
 
   initialize(appElement) {
@@ -112,12 +114,39 @@ export default Backbone.Router.extend({
     this.render(<SpinnerComponent/>);
   },
 
+  showAbout() {
+    let image = this.collection.get(id);
+    let id = '5FtVHOcGZQ';
+    if (image) {
+      this.render(
+        <AboutComponent
+          onBackClick={() => this.goto('picture')}
+          onEditClick={(id) => this.goto('edit/' + id)}
+          details={image.toJSON()}/>
+
+        
+      );
+      
+    } else {
+      image = this.collection.add({objectId: id});
+      image.fetch().then(() => {
+        this.render(
+          <AboutComponent
+            onBackClick={() => this.goto('picture')}
+            onEditClick={(id) => this.goto('edit/' + id)}
+            details={image.toJSON()}/>
+        );
+      });
+    }
+
+  },
+
   showEditPictures(id) {
-    let pic = this.collection.get(id);
+    let newedit = this.collection.get(id);
 
     this.render(
       <EditComponent
-        record={pic.toJSON()}
+        record={newedit.toJSON()}
         onCancelClick={() => this.goto('detail/' + id)}
         onSubmit={(location, url, sum) => this.saveForm(location, url, sum, id)}/>
     );

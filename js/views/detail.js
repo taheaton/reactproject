@@ -20,17 +20,17 @@ export default React.createClass({
 
         <div className="detail-about">
           <h2>{this.props.details.location}</h2>
-          <p>{this.props.details.sum}</p>
+          <p>{this.props.details.sum}</p><hr/>
         </div>
 
         <div className="detail-edit"> 
           <button className="detail-edit-btn" key={this.props.details.objectId} onClick={() => this.editClickHandler(this.props.details.objectId)}>
             Edit Picture
-          </button>
+          </button><br/><br/>
         </div>
 
         <div className="detail-back">
-          <button className="detail-back-btn" onClick={this.backClickHandler}>Go Back</button>
+          <button className="detail-back-btn" onClick={this.backClickHandler}>Home Page</button>
         </div>
       </div>
     );

@@ -2029,7 +2029,6 @@ body {
   background-color: #dedede; }
 
 .header {
-  font-family: 'Arvo', serif;
   text-align: center;
   border-radius: 180px;
   border-style: solid;
@@ -2041,7 +2040,7 @@ body {
   margin-right: 2.35765%;
   width: 31.76157%;
   text-align: center;
-  padding: 0px;
+  padding: 10px;
   padding-right: 10px;
   margin-bottom: 16px; }
   .menu:last-child {
@@ -2102,7 +2101,6 @@ body {
   margin: 50px; }
 
 .detail-container {
-  display: inline-block;
   margin: 20px; }
 
 .detail-container img {
@@ -2110,9 +2108,14 @@ body {
   max-height: 500px;
   float: left; }
 
-.detail-container p {
-  margin-left: 515px;
-  margin-right: 100px; }
+.detail-about {
+  margin-left: 523px; }
+
+.detail-edit {
+  margin-left: 523px; }
+
+.detail-back {
+  margin-left: 523px; }
 
 .add-container {
   max-width: 34em;
@@ -2127,5 +2130,30 @@ body {
 
 .add-input-about {
   width: 580px; }
+
+.edit-container {
+  width: 34em;
+  margin-left: auto;
+  margin-right: auto; }
+
+.edit-input-location {
+  width: 580px; }
+
+.edit-input-url {
+  width: 580px; }
+
+.edit-input-sum {
+  width: 580px; }
+
+.about {
+  margin: 50px; }
+
+.about-container {
+  margin: 20px; }
+
+.about-container img {
+  width: 50%;
+  height: 50%;
+  float: left; }
 
 /*# sourceMappingURL=main.css.map */
