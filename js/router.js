@@ -7,6 +7,10 @@ import PictureComponent from './views/picture';
 import DetailsComponent from './views/detail';
 import AddComponent from './views/add';
 import EditComponent from './views/edit';
+import SpinnerComponent from './views/spinner';
+
+
+
 
 export default Backbone.Router.extend({
   routes: {
@@ -59,7 +63,7 @@ export default Backbone.Router.extend({
           onBackClick={() => this.goto('picture')}
           onEditClick={(id) => this.goto('edit/' + id)}
           details={image.toJSON()}/>
-          
+
         
       );
       
@@ -115,16 +119,17 @@ export default Backbone.Router.extend({
       <EditComponent
         record={pic.toJSON()}
         onCancelClick={() => this.goto('detail/' + id)}
-        onSubmit={(msg, url, about) => this.saveForm(msg, url, about, id)}/>
+        onSubmit={(location, url, sum) => this.saveForm(location, url, sum, id)}/>
     );
       
   },
 
-  saveForm(msg, url, about, id) {
+  saveForm(location, url, sum, id) {
+    this.showSpinner();
     this.collection.get(id).save({
-      Title: msg,
+      location: location,
       Url: url,
-      About: about
+      sum: sum,
     }).then(() => {
       this.goto('picture');
     });

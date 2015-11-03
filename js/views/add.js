@@ -45,6 +45,7 @@ export default React.createClass({
 
         <div className="add-form">
           <form onSubmit={this.submitHandler}>
+            
             <label className="add-label-url">Url: <input onChange={this.updateUrl} className="add-input-url" placeholder="Please provide the image url here  (i.e. 'www.mypicture.com')" type="url"/></label><br/><br/>
             <label className="add-label-title">Location: <input onChange={this.updateTitle} className="add-input-title" placeholder="Where was your picture taken?  (i.e. 'Paris, France')" type="text"/></label><br/><br/>
             <label className="add-label-about">About: <input onChange={this.updateAbout} className="add-input-about" placeholder="Please write a brief description about the picture and context" type="text"/></label><br/><br/>

@@ -13,9 +13,6 @@ export default React.createClass({
   render() {
     return (
       <div className="detail-container">
-        <div className="detail-header">
-          <h2>{this.props.details.location}</h2> 
-        </div>
 
         <div className="detail-img">
           <img src={this.props.details.Url}/>  
