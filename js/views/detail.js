@@ -10,12 +10,17 @@ export default React.createClass({
     this.props.onEditClick(id);
   },
 
+  changeClickHandler() {
+    this.props.onDetailsClick
+  },
+
   render() {
     return (
       <div className="detail-container">
 
         <div className="detail-img">
-          <img src={this.props.details.Url}/>  
+          <img src={this.props.details.Url}/>
+          <img src={this.props.details.pic2}className="thumbnail"/>
         </div>   
 
         <div className="detail-about">
@@ -32,6 +37,8 @@ export default React.createClass({
         <div className="detail-back">
           <button className="detail-back-btn" onClick={this.backClickHandler}>Home Page</button>
         </div>
+
+        
       </div>
     );
   }

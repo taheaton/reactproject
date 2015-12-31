@@ -72,14 +72,8 @@ var _pictureModel = require('./pictureModel');
 
 var _pictureModel2 = _interopRequireDefault(_pictureModel);
 
-var _pictureCollection3 = _interopRequireDefault(_pictureCollection);
-
-var _pictureModel3 = _interopRequireDefault(_pictureModel);
-
 exports.PictureModel = _pictureModel2['default'];
 exports.PictureCollection = _pictureCollection2['default'];
-exports.PictureCollection2 = _pictureCollection3['default'];
-exports.PictureModel2 = _pictureModel3['default'];
 
 },{"./pictureCollection":5,"./pictureModel":6}],5:[function(require,module,exports){
 'use strict';
@@ -570,6 +564,10 @@ exports["default"] = _react2["default"].createClass({
     this.props.onEditClick(id);
   },
 
+  changeClickHandler: function changeClickHandler() {
+    this.props.onDetailsClick;
+  },
+
   render: function render() {
     var _this = this;
 
@@ -579,7 +577,8 @@ exports["default"] = _react2["default"].createClass({
       _react2["default"].createElement(
         "div",
         { className: "detail-img" },
-        _react2["default"].createElement("img", { src: this.props.details.Url })
+        _react2["default"].createElement("img", { src: this.props.details.Url }),
+        _react2["default"].createElement("img", { src: this.props.details.pic2, className: "thumbnail" })
       ),
       _react2["default"].createElement(
         "div",
